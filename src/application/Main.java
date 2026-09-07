@@ -28,9 +28,9 @@ public class Main {
             System.out.print("Enter the Password: ");
             var password = sc.next();
 
-            userService.registerUser(name, cpf, email, password);
+            User registeredUser = userService.registerUser(name, cpf, email, password);
 
-            System.out.println("User registered successfully!");
+            System.out.println("User registered successfully! Welcome " + registeredUser.getName());
         }
         catch (RuntimeException e) {
             System.out.println("\nErro: " + e.getMessage());
