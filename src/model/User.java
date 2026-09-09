@@ -16,7 +16,7 @@ public class User {
 
     //A ideia é criar um método para que um usuário possa ter conta ou contas
 
-    private List<Account> accounts = new ArrayList<>()  ;
+    private final List<Account> accounts = new ArrayList<>()  ;
 
     //Validação necessário, pois o usuário não pode ser instanciao com informacoes nulas ou vazias.
     public User(String name, String cpf, String email, String password) {
@@ -73,6 +73,8 @@ public class User {
         return password;
     }
 
-
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 
 }
