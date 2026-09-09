@@ -3,7 +3,10 @@ package model;
 import exceptions.DepositLimitExceededException;
 import exceptions.InsufficientBalanceException;
 import exceptions.WithdrawLimitExceededException;
+import model.enums.TransactionType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Account {
@@ -16,6 +19,8 @@ public class Account {
     private Double withdrawLimit;
     private Double depositLimit;
     private User owner;
+
+    private final List<Transaction> transactions = new ArrayList<>();
 
     public Account(User owner, Integer accountNumber, Double balance, Double withdrawLimit, Double depositLimit) {
         this.id = UUID.randomUUID();
@@ -50,6 +55,10 @@ public class Account {
         return owner;
     }
 
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
     //Métodos de négocio. A conta pode realizar algumas alteraçoes, como saque, deposito. Ainda irei adicionar mais alguns métodos.
     public void withdraw(double amount) {
         if(amount <= 0) {
@@ -65,6 +74,9 @@ public class Account {
         }
 
         this.balance -= amount;
+
+        Transaction transaction = new Transaction(TransactionType.WITHDRAW, amount, "Saque realizado com sucesso");
+        transactions.add(transaction);
     }
 
     public void deposit(double amount) {
@@ -77,6 +89,9 @@ public class Account {
         }
 
         this.balance += amount;
+
+        Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, "Deposito realizado com sucesso");
+        transactions.add(transaction);
     }
 
 }
