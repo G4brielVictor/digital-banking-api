@@ -1,7 +1,9 @@
 package application;
 
+import model.Account;
+import model.Transaction;
 import model.User;
-import service.AccountService;
+
 import service.UserService;
 
 import java.util.Scanner;
@@ -48,6 +50,9 @@ public class Main {
             User userLogged = userService.loginUser(credentials, password);
 
             System.out.println("Login successfully! Welcome " + userLogged.getName());
+            for(Account account : userLogged.getAccounts()) {
+                System.out.println(account.getTransactions());
+            }
         }
         catch (RuntimeException e) {
             System.out.println("\nErro: " + e.getMessage());
