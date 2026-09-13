@@ -1,108 +1,86 @@
 # 🏦 Digital Banking Core Engine
 
-> Motor bancário desenvolvido em **Java 21 puro**, focado em boas práticas de Orientação a Objetos, Domain-Driven Design (DDD) básico, encapsulamento rigoroso e arquitetura limpa em camadas.
+> A banking engine developed in **pure Java 21**, focused on Object-Oriented Programming, basic Domain-Driven Design (DDD) concepts, strict encapsulation, domain rules, and a clean layered architecture.
 
 ---
 
-## 📌 Sobre o Projeto
+## 📌 About the Project
 
-O **Digital Banking Core Engine** é uma simulação de backend bancário projetada para gerenciar o ciclo de vida completo de clientes, contas e transações financeiras. 
+**Digital Banking Core Engine** is a backend-oriented banking system designed to manage users, bank accounts, and financial transactions.
 
-O projeto foi construído sem o uso de frameworks mágicos, priorizando o domínio dos fundamentos da linguagem Java, imutabilidade de fatos contábeis, tratamento robusto de exceções de domínio e uma interface interativa de console com controle de sessão.
+The project was built without frameworks, prioritizing a solid understanding of Java fundamentals, domain modeling, business rules, exception handling, and code organization.
 
----
-
-## 🛠️ Tecnologias e Recursos Utilizados
-
-- **Linguagem:** Java 21 (LTS)
-- **Paradigma:** Orientação a Objetos (POO) com Modelo Rico (*Rich Domain Model*)
-- **Date & Time API:** `java.time.LocalDateTime` e `DateTimeFormatter`
-- **Controle de Versão:** Git com padrão *Conventional Commits*
-- **Arquitetura:** Separação de responsabilidades em camadas (`model`, `service`, `application`, `exceptions`)
+The application also provides an interactive console interface for user authentication and banking operations.
 
 ---
 
-## 🏛️ Arquitetura e Decisões de Design
-### Principais Decisões Técnicas:
-1. **Encapsulamento e Proteção de Invariantes:**
-   - As entidades `User` e `Account` validam seus dados diretamente nos construtores, impedindo que objetos nasçam em estado inconsistente ou com atributos nulos/inválidos.
-2. **Imutabilidade e Integridade Contábil:**
-   - A classe `Transaction` possui atributos imutáveis (`final`) e não expõe métodos setters, garantindo que o histórico financeiro seja um fato auditável e inviolável.
-3. **Princípio DRY e Sobrecarga de Métodos:**
-   - A classe `Account` utiliza sobrecarga (*Method Overloading*) nos métodos `withdraw` e `deposit`, permitindo que transferências gerem comprovantes customizados (`TRANSFER_SENT` e `TRANSFER_RECEIVED`) sem duplicar regras de saldo e limites.
-4. **Tratamento Semântico de Erros (Fail-Fast):**
-   - Criação de exceções de negócio específicas estendendo `RuntimeException`, evitando retornos nulos ou booleanos e propagando mensagens de erro expressivas para a interface.
+## 🛠️ Technologies and Concepts
+
+- **Language:** Java 21 (LTS)
+- **Paradigm:** Object-Oriented Programming (OOP)
+- **Domain Modeling:** Rich Domain Model concepts
+- **Date & Time API:** `java.time.LocalDateTime` and `DateTimeFormatter`
+- **Version Control:** Git
+- **Commit Convention:** Conventional Commits
+- **Architecture:** Separation of responsibilities into layers:
+  - `model`
+  - `service`
+  - `application`
+  - `exceptions`
 
 ---
 
-## 💼 Regras de Negócio Implementadas
+## 🏛️ Architecture and Design Decisions
 
-- **Usuários & Autenticação:**
-  - Cadastro com validação de CPF (11 dígitos numéricos) e formato de e-mail.
-  - Validação de senha forte (mínimo de 8 caracteres, letra maiúscula, número e caractere especial).
-  - Verificação de unicidade de CPF e e-mail.
-  - Autenticação híbrida (login via CPF ou E-mail + Senha).
-- **Contas Bancárias:**
-  - Geração sequencial e automática de número de conta.
-  - Limite operacional de saque e depósito por transação.
-  - Suporte a depósito inicial de abertura com emissão de extrato.
-- **Operações Financeiras:**
-  - Depósito e Saque com validação de saldo e limites operacionais.
-  - Transferência entre contas utilizando o CPF do destinatário ("Chave Pix").
-  - Extrato bancário detalhado com carimbo de data/hora (`dd/MM/yyyy HH:mm:ss`) e valor formatado em moeda brasileira (`R$`).
+### 1. Encapsulation and Invariant Protection
 
----
+The `User` and `Account` entities validate their data during object creation, preventing objects from being created in an inconsistent or invalid state.
 
-## 🚀 Como Executar o Projeto
+### 2. Immutability and Transaction Integrity
 
-### Pré-requisitos:
-- Java JDK 21 ou superior instalado.
-- Git instalado.
+The `Transaction` class uses immutable attributes and does not expose setters, ensuring that transaction records cannot be modified after creation.
 
-### Passo a passo:
+### 3. DRY and Method Overloading
 
-1.*Clone o repositório:**
-   ```bash
-   git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
-   ```
-2.**Acesse o diretório do projeto:**
-  ```bash
-  cd "Digital Bank API"
-  ```
-3.**Compile os arquivos Java:**
-  ```bash
-  javac -d bin src/model/enums/*.java src/model/*.java src/exceptions/*.java src/service/*.java src/application/*.java
-  ```
-4.**Execute a aplicação:**
-  ```bash
-  java -cp bin application.Main
-   ```
-   
----
-   
-##🗺️ Próximos Passos (Roadmap de Evolução)
-•
-[ ] Refatoração para a camada Repository (separando persistência de regras de negócio).
-•
-[ ] Implementação de AccountType com contas Corrente, Poupança e Universitária.
-•
-[ ] Escrita de testes unitários automatizados com JUnit 5.
-•
-[ ] Migração para Spring Boot (Spring Web, Spring Data JPA, PostgreSQL e Docker).
+The `Account` class uses method overloading for `withdraw` and `deposit`, allowing different transaction contexts, such as `TRANSFER_SENT` and `TRANSFER_RECEIVED`, without duplicating balance and limit validation rules.
 
-##👨‍💻 Autor
-Desenvolvido por Gabriel Victor.
-Estudante e entusiasta do ecossistema Java e Engenharia de Software Backend.
+### 4. Semantic Error Handling
+
+The application uses specific business exceptions extending `RuntimeException` to represent invalid operations and domain rule violations.
+
+This approach allows errors to be handled according to their business meaning instead of relying on ambiguous return values such as `null` or `boolean`.
 
 ---
 
-### DICAS PARA SUBIR NO GITHUB:
+## 💼 Implemented Business Rules
 
-1. Crie um arquivo chamado **`README.md`** na raiz da sua pasta `Digital Bank API`.
-2. Cole o conteúdo acima.
-3. Altere o link do `git clone` com o seu usuário real do GitHub.
-4. Faça o commit e push:
-   ```bash
-   git add README.md
-   git commit -m "docs: add comprehensive project README with architecture and domain decisions"
-   git push
+### Users and Authentication
+
+- User registration with CPF validation using 11 numeric digits.
+- Email format validation.
+- Strong password validation:
+  - Minimum of 8 characters.
+  - At least one uppercase letter.
+  - At least one number.
+  - At least one special character.
+- CPF uniqueness validation.
+- Email uniqueness validation.
+- Authentication using either CPF or email combined with a password.
+
+### Bank Accounts
+
+- Automatic sequential account number generation.
+- Operational withdrawal and deposit limits per transaction.
+- Support for an initial deposit when opening an account.
+- Transaction registration for account operations.
+
+### Financial Operations
+
+- Deposits with value and operational limit validation.
+- Withdrawals with balance and operational limit validation.
+- Transfers between accounts using the recipient's CPF as an identifier.
+- Detailed transaction history.
+- Date and time formatting using:
+
+```text
+dd/MM/yyyy HH:mm:ss
