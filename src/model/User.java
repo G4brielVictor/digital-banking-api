@@ -1,5 +1,7 @@
 package model;
 
+import service.UserService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -75,6 +77,13 @@ public class User {
 
     public List<Account> getAccounts() {
         return accounts;
+    }
+
+    public void addAccount(Account account) {
+        if(account == null){
+            throw new IllegalArgumentException("Account is null");
+        }
+        accounts.add(account);
     }
 
 }
