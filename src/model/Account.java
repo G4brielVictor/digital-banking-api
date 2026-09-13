@@ -60,7 +60,7 @@ public class Account {
     }
 
     //Métodos de négocio. A conta pode realizar algumas alteraçoes, como saque, deposito. Ainda irei adicionar mais alguns métodos.
-    public void withdraw(double amount) {
+    public void withdraw(double amount, TransactionType type, String description) {
         if(amount <= 0) {
             throw new IllegalArgumentException("Erro no saque realizado.");
         }
@@ -75,11 +75,11 @@ public class Account {
 
         this.balance -= amount;
 
-        Transaction transaction = new Transaction(TransactionType.WITHDRAW, amount, "Saque realizado com sucesso");
+        Transaction transaction = new Transaction(type, amount, description);
         transactions.add(transaction);
     }
 
-    public void deposit(double amount) {
+    public void deposit(double amount, TransactionType type, String description) {
         if(amount <= 0) {
             throw new IllegalArgumentException("Erro no deposito realizado.");
         }
@@ -90,8 +90,36 @@ public class Account {
 
         this.balance += amount;
 
-        Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, "Deposito realizado com sucesso");
+        Transaction transaction = new Transaction(type, amount, description);
         transactions.add(transaction);
     }
 
+    public void withdraw(double amount) {
+        withdraw(amount, TransactionType.WITHDRAW, "Saque realizado com sucesso");
+    }
+
+    public void deposit(double amount) {
+        deposit(amount,TransactionType.DEPOSIT, "Deposito realizado com sucesso");
+    }
+
+    public void printStatement() {
+        if(transactions.isEmpty()) {
+            System.out.println("Nenhum transação encontrada.");
+            return;
+        }
+
+        for(Transaction transaction : transactions) {
+            System.out.println(transaction);
+        }
+    }
+
+    @Override
+    public String toString(){
+        return "Conta\n" +
+               "Dados pessoais:\nNome: " + getOwner().getName() + " CPF: " + getOwner().getCpf() + " Email: " + getOwner().getEmail() +
+               "\n\nNumero da conta: " + getAccountNumber() +
+               "\nSaldo: " + getBalance() +
+               "\nLimite de deposito: " + getDepositLimit() +
+               "\nLimite de saque: " + getWithdrawLimit();
+    }
 }

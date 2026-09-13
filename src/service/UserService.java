@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.AccountNotFoundException;
 import exceptions.UserNotFoundException;
 import exceptions.InvalidPasswordException;
 import exceptions.UserAlreadyExistsException;
@@ -67,5 +68,20 @@ public class UserService {
         }
 
         throw new UserNotFoundException("Usuário não encontrado");
+    }
+
+    public User findByCpf(String identifier){
+        for(User u : users){
+            if(u.getCpf().equals(identifier)){
+                if(!u.getAccounts().isEmpty()){
+                    return u;
+                }
+                else {
+                    throw new AccountNotFoundException("O usuário destinatário não possui conta bancária ativa.");
+                }
+            }
+        }
+
+        throw new UserNotFoundException("Destinatário não encontrado com o CPF informado.");
     }
 }
