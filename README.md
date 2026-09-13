@@ -65,11 +65,10 @@ O projeto foi construído sem o uso de frameworks mágicos, priorizando o domín
    ```bash
    git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
 
-2.
-Acesse o diretório do projeto:
+2.Acesse o diretório do projeto:
   ```bash
   cd "Digital Bank API"
-
+  ```
 3.Compile os arquivos Java:
   ```bash
   javac -d bin src/model/enums/*.java src/model/*.java src/exceptions/*.java src/service/*.java src/application/*.java
