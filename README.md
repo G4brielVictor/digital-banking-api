@@ -78,6 +78,8 @@ O projeto foi construído sem o uso de frameworks mágicos, priorizando o domín
   java -cp bin application.Main
    ```
    
+---
+   
 ##🗺️ Próximos Passos (Roadmap de Evolução)
 •
 [ ] Refatoração para a camada Repository (separando persistência de regras de negócio).
