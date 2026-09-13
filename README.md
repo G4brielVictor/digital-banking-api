@@ -61,23 +61,24 @@ O projeto foi construído sem o uso de frameworks mágicos, priorizando o domín
 
 ### Passo a passo:
 
-1. **Clone o repositório:**
+1.*Clone o repositório:**
    ```bash
    git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
-
-2. **Acesse o diretório do projeto:**
+   ```
+2.**Acesse o diretório do projeto:**
   ```bash
   cd "Digital Bank API"
   ```
-3. **Compile os arquivos Java:**
+3.**Compile os arquivos Java:**
   ```bash
   javac -d bin src/model/enums/*.java src/model/*.java src/exceptions/*.java src/service/*.java src/application/*.java
   ```
-4. **Execute a aplicação:**
+4.**Execute a aplicação:**
   ```bash
   java -cp bin application.Main
-  ```
-🗺️ Próximos Passos (Roadmap de Evolução)
+   ```
+   
+##🗺️ Próximos Passos (Roadmap de Evolução)
 •
 [ ] Refatoração para a camada Repository (separando persistência de regras de negócio).
 •
@@ -86,7 +87,8 @@ O projeto foi construído sem o uso de frameworks mágicos, priorizando o domín
 [ ] Escrita de testes unitários automatizados com JUnit 5.
 •
 [ ] Migração para Spring Boot (Spring Web, Spring Data JPA, PostgreSQL e Docker).
-👨‍💻 Autor
+
+##👨‍💻 Autor
 Desenvolvido por Gabriel Victor.
 Estudante e entusiasta do ecossistema Java e Engenharia de Software Backend.
 
