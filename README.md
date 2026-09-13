@@ -65,14 +65,40 @@ O projeto foi construído sem o uso de frameworks mágicos, priorizando o domín
    ```bash
    git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
 
-2.Acesse o diretório do projeto:
+2. **Acesse o diretório do projeto:**
   ```bash
   cd "Digital Bank API"
   ```
-3.Compile os arquivos Java:
+3. **Compile os arquivos Java:**
   ```bash
   javac -d bin src/model/enums/*.java src/model/*.java src/exceptions/*.java src/service/*.java src/application/*.java
   ```
-4.Execute a aplicação:
+4. **Execute a aplicação:**
   ```bash
   java -cp bin application.Main
+  ```
+🗺️ Próximos Passos (Roadmap de Evolução)
+•
+[ ] Refatoração para a camada Repository (separando persistência de regras de negócio).
+•
+[ ] Implementação de AccountType com contas Corrente, Poupança e Universitária.
+•
+[ ] Escrita de testes unitários automatizados com JUnit 5.
+•
+[ ] Migração para Spring Boot (Spring Web, Spring Data JPA, PostgreSQL e Docker).
+👨‍💻 Autor
+Desenvolvido por Gabriel Victor.
+Estudante e entusiasta do ecossistema Java e Engenharia de Software Backend.
+
+---
+
+### DICAS PARA SUBIR NO GITHUB:
+
+1. Crie um arquivo chamado **`README.md`** na raiz da sua pasta `Digital Bank API`.
+2. Cole o conteúdo acima.
+3. Altere o link do `git clone` com o seu usuário real do GitHub.
+4. Faça o commit e push:
+   ```bash
+   git add README.md
+   git commit -m "docs: add comprehensive project README with architecture and domain decisions"
+   git push
